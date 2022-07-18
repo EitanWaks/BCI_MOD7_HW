@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  jupyter:
+    image: jupyterlab:latest?token=docker
+    ports:
+      - 8888:8888
+    # volumes:
+    #   - my_volume:/app
+    environment:
+      JUPYTER_TOKEN: "docker"
+# volumes:
+#   my_volume:
+#     external: true
