@@ -6,3 +6,4 @@ jupyterlab
 torch
 torchvision
 torchaudio
+ipywidgets
