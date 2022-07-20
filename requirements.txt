@@ -4,6 +4,6 @@ mne
 numpy
 jupyterlab
 torch
-torchvision
+moabb
 torchaudio
 ipywidgets
