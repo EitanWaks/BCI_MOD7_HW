@@ -1,4 +1,4 @@
-Braindecode
+
 matplotlib
 mne
 numpy
