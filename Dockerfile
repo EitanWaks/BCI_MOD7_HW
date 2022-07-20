@@ -20,14 +20,10 @@ ARG datasettype=edf
 ARG dataseturl=https://gin.g-node.org/robintibor/high-gamma-dataset/src/395f86583b7342e687dbfa5ef9077377b0428370/data/train/${datasetname}.${datasettype}
 
 # Logical statement for choosing the correct hash. Depending on the data type. Datasets hashed July, 20, 2022
-FROM base AS branch-datasettype-edf
+# if [ "$datasettype" = "mat" ]
+# ARG DATASET_SHA256=41dd2171d8806658e053a81e51960e1434f949615221afc4afb22adb46f4ceee
+# if [ "$datasettype" = "edf" ]
 ARG DATASET_SHA256=943390216871aee03dac6cda77e0f0ba34bc9adfc9d8bc7790127981b13b7bc4
-
-FROM base AS branch-datasettype-mat
-ARG DATASET_SHA256=41dd2171d8806658e053a81e51960e1434f949615221afc4afb22adb46f4ceee
-
-FROM branch-datasettype-${datasettype} AS final
-RUN echo "VAR is equal to ${VAR}"
 
 # Download High Gamma Dataset from https://gin.g-node.org/robintibor/high-gamma-dataset
 WORKDIR /app
