@@ -11,3 +11,7 @@ This is a repository dedicated to module 7 homework assignment. The purpose of t
 6. Run the notebook in sequential order or play around with it
 
 Building the image may take it's a long time due to downloading the dataset, environment, packages, and GitHub repository. This may take more than 15 minutes, entirely dependent upon Internet speed.
+
+
+## Troubleshooting
+- If changes are made to the GitHub repository, it is important to load the docker file with no cache. I have found it useful to prune everything using the command (in the terminal without quotations): “docker system prune –all”
