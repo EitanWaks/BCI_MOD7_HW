@@ -7,7 +7,7 @@ This is a repository dedicated to module 7 homework assignment. The purpose of t
 2. Download Dockerfile and docker-compose.yaml (make sure they are in the same directory)
 3. Open a Terminal and navigate to the directory containing the downloaded files
 4. In the terminal execute: “docker build -t [name]:[tag] .” Without the quotation marks and without the square brackets. name and tag can be arbitrarily defined by the user.
-5. In the terminal execute: “docker-compose up” Without the quotation marks.
+5. In the terminal execute: “docker run --rm -it -p 8888:8888 jupyterlab:latest” Without the quotation marks.
 6. Run the notebook in sequential order or play around with it
 
 Building the image may take it's a long time due to downloading the dataset, environment, packages, and GitHub repository. This may take more than 15 minutes, entirely dependent upon Internet speed.
