@@ -1,7 +1,7 @@
-# Python version (use -bullseye variants on local arm64/Apple Silicon)
-ARG VARIANT="3.10-bullseye"
-FROM mcr.microsoft.com/vscode/devcontainers/python:0-${VARIANT} AS base
+FROM python:3.10-bullseye
+# RUN --mount=type=cache,target=/var/cache/apt ...
 
+ENV DOCKER_BUILDKIT=1
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
@@ -19,15 +19,12 @@ ARG datasetname=1
 ARG datasettype=edf
 ARG dataseturl=https://gin.g-node.org/robintibor/high-gamma-dataset/src/395f86583b7342e687dbfa5ef9077377b0428370/data/train/${datasetname}.${datasettype}
 
-# Logical statement for choosing the correct hash. Depending on the data type. Datasets hashed July, 20, 2022
-# if [ "$datasettype" = "mat" ]
-# ARG DATASET_SHA256=41dd2171d8806658e053a81e51960e1434f949615221afc4afb22adb46f4ceee
-# if [ "$datasettype" = "edf" ]
+# Dataset hashed July, 20, 2022
 ARG DATASET_SHA256=943390216871aee03dac6cda77e0f0ba34bc9adfc9d8bc7790127981b13b7bc4
 
 # Download High Gamma Dataset from https://gin.g-node.org/robintibor/high-gamma-dataset
 WORKDIR /app
-# ADD ${dataseturl} ./data/${datasetname}.${datasettype}
+# ADD ${dataseturl} ./data/${datasetname}.${datasettype} #downloaded dataset does not load correctly
 COPY ${datasetname}.${datasettype} ./data/${datasetname}.${datasettype}
 
 # Hash checksum for the dataset
@@ -37,7 +34,6 @@ RUN echo "${DATASET_SHA256}  ./data/${datasetname}.${datasettype}" | sha256sum -
 RUN git clone https://${gitusername}:${gitpassword}@github.com/${githubrepo}
 
 # Upgrade pip and install packages
-RUN /usr/local/bin/python -m pip install --upgrade pip
 RUN python -m pip install -r ./${githubreponame}/requirements.txt
 
 CMD ["jupyter-lab","--ip=0.0.0.0","--no-browser","--allow-root"]
