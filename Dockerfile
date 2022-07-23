@@ -1,5 +1,4 @@
 FROM python:3.10-bullseye
-# RUN --mount=type=cache,target=/var/cache/apt ...
 
 ENV DOCKER_BUILDKIT=1
 ENV PYTHONDONTWRITEBYTECODE=1
